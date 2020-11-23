@@ -22,6 +22,7 @@ resource "hcloud_server" "bastion" {
 resource "hcloud_server_network" "bastion" {
   server_id  = hcloud_server.bastion.id
   network_id = hcloud_network.internal.id
+  ip         = "10.0.0.2"
 }
 
 resource "hcloud_floating_ip_assignment" "bastion" {
