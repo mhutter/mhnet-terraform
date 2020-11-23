@@ -1,5 +1,6 @@
 locals {
-  bastion_fqdn = "bastion.${var.location}.${data.google_dns_managed_zone.mhnet.dns_name}"
+  domain       = trimsuffix(data.google_dns_managed_zone.mhnet.dns_name, ".")
+  bastion_fqdn = "bastion.${var.location}.${local.domain}"
 }
 resource "hcloud_floating_ip" "bastion" {
   type          = "ipv4"
@@ -33,7 +34,7 @@ resource "hcloud_floating_ip_assignment" "bastion" {
 }
 
 resource "google_dns_record_set" "bastion" {
-  name    = local.bastion_fqdn
+  name    = "${local.bastion_fqdn}."
   type    = "A"
   ttl     = 300
   rrdatas = [hcloud_server_network.bastion.ip]
