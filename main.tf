@@ -1,10 +1,10 @@
 resource "hcloud_ssh_key" "default" {
   name       = "default"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfm1yYW1eWfyHGTHVgtgP2P2yY5otmHnSWUWEyNk23f"
+  public_key = var.ssh_public_key
 }
 
 resource "hcloud_network" "internal" {
-  name     = "mhnet"
+  name     = "internal"
   ip_range = "10.0.0.0/16"
 }
 resource "hcloud_network_subnet" "internal" {
