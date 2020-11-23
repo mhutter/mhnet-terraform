@@ -1,8 +1,11 @@
 terraform {
+  required_version = ">= 0.13"
   required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
     hcloud = {
       source = "hetznercloud/hcloud"
     }
   }
-  required_version = ">= 0.13"
 }
