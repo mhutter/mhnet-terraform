@@ -22,9 +22,19 @@ resource "hcloud_server" "bastion" {
 resource "hcloud_server_network" "bastion" {
   server_id  = hcloud_server.bastion.id
   network_id = hcloud_network.internal.id
+  ip         = "10.0.0.2"
 }
 
 resource "hcloud_floating_ip_assignment" "bastion" {
   floating_ip_id = hcloud_floating_ip.bastion.id
   server_id      = hcloud_server.bastion.id
+}
+
+resource "google_dns_record_set" "bastion" {
+  name    = "bastion.${data.google_dns_managed_zone.mhnet.dns_name}"
+  type    = "A"
+  ttl     = 300
+  rrdatas = [hcloud_server_network.bastion.ip]
+
+  managed_zone = data.google_dns_managed_zone.mhnet.name
 }
