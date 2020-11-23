@@ -6,6 +6,8 @@ on:
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: '26 2 * * *'
 
 jobs:
   terraform:
