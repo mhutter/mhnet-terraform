@@ -8,20 +8,6 @@ users:
     ssh-authorized-keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfm1yYW1eWfyHGTHVgtgP2P2yY5otmHnSWUWEyNk23f
 
-runcmd:
-  - while ! test -f /etc/netplan/60-floating-ip.yaml; do sleep 2; done
-  - [netplan, apply]
-
-write_files:
-  - path: /etc/netplan/60-floating-ip.yaml
-    content: |
-      network:
-        version: 2
-        ethernets:
-          eth0:
-            addresses:
-              - ${floating_ip}/32
-
 phone_home:
   url: https://c728a5146e67f85dcc0038eeb3cbf1e3.m.pipedream.net
   post:
