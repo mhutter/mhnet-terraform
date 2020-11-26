@@ -38,7 +38,7 @@ resource "hcloud_server" "bastion" {
   server_type = "cx11"
   location    = var.location
   ssh_keys    = [hcloud_ssh_key.default.id]
-  user_data   = cloudinit_config.bastion.rendered
+  user_data   = data.cloudinit_config.bastion.rendered
 }
 
 resource "hcloud_server_network" "bastion" {
