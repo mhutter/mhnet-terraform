@@ -45,7 +45,7 @@ jobs:
         continue-on-error: true
 
       - name: Report status to PR
-        uses: actions/github-script@v3.1.0
+        uses: actions/github-script@v3.1.1
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
