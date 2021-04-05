@@ -3,7 +3,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 3.57.0"
+      version = "~> 3.63.0"
     }
     hcloud = {
       source  = "hetznercloud/hcloud"
